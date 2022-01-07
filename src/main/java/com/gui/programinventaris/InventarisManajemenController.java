@@ -16,7 +16,6 @@ import javafx.application.Platform;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener.Change;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -171,13 +170,13 @@ public class InventarisManajemenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         jumlahBarang.textProperty().addListener((ov, oldValue, newValue) -> {
-//            All values except  number will be replaced
+            //Sebuah regular expression untuk mencegah string selain angka ditulis pada textfield jumlahBarang
             jumlahBarang.setText(newValue.replaceAll("[^0-9$]", ""));
         });
         try{
-//            Showing table
+            //Mengambil seluruh data tabel
             this.rs = this.stmt.executeQuery("SELECT * FROM tb_barang");
-//            Set Collumn 
+            //Set Collumn 
             tcIdBarang.setCellValueFactory((p) -> {
                 ObservableValue<Integer> obsInt = new SimpleIntegerProperty(p.getValue().getIdBarang()).asObject();
                 return obsInt; 
@@ -194,14 +193,15 @@ public class InventarisManajemenController implements Initializable {
                 tbview.getItems().add(new BarangModel(rs.getInt("id_barang"), rs.getString("nama"), rs.getInt("jumlah")));
             }
             
-//            Inisialisasi single item table
+//            Inisialisasi single item table item pada table tidak bisa dipilih 
+//            lebih dari dua (mencegah ctrl+mouse left click)
             selectionModel = tbview.getSelectionModel();
             selectionModel.setSelectionMode(SelectionMode.SINGLE);
             
-//            Get selected item
+            //Mendapatkan item yang dipilih
             selectedItems = selectionModel.getSelectedItems();
             
-//            Add listener => get item 
+            //Membuat Listener saat salah satu item pada list di klik
             selectedItems.addListener((Change<? extends BarangModel> change) -> {
                 namaBarang.setText(change.getList().get(0).getNama());
                 jumlahBarang.setText(""+change.getList().get(0).getJumlah());
