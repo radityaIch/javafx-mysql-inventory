@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="ApBarang" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="266.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gui.programinventaris.InventarisManajemenController">
+   <children>
+      <ScrollPane layoutX="248.0" layoutY="83.0" prefHeight="337.0" prefWidth="365.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="333.0" prefWidth="362.0">
+               <children>
+                  <TableView fx:id="tbview" prefHeight="330.0" prefWidth="365.0">
+                    <columns>
+                        <TableColumn fx:id="tcIdBarang" prefWidth="65.0" text="ID Barang" />
+                      <TableColumn fx:id="tcNama" prefWidth="209.0" text="Nama Barang" />
+                      <TableColumn fx:id="tcJumlah" prefWidth="89.0" text="Jumlah" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <TextField id="jumlahBarang" fx:id="jumlahBarang" layoutX="27.0" layoutY="142.0" prefHeight="26.0" prefWidth="193.0" promptText="Jumlah" />
+      <Button id="tambahBarang" fx:id="btnTambah" layoutX="27.0" layoutY="197.0" mnemonicParsing="false" onAction="#nampilin" prefHeight="30.0" prefWidth="193.0" text="Tambah Barang" />
+      <TextField id="namaBarang" fx:id="namaBarang" layoutX="27.0" layoutY="92.0" prefHeight="26.0" prefWidth="193.0" promptText="Nama Barang" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="261.0" layoutY="33.0" prefHeight="30.0" prefWidth="119.0" text="Data Barang" textAlignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnEdit" disable="true" layoutX="27.0" layoutY="240.0" mnemonicParsing="false" onAction="#update" prefHeight="30.0" prefWidth="193.0" text="Update Barang" />
+      <Button fx:id="btnHapus" disable="true" layoutX="27.0" layoutY="283.0" mnemonicParsing="false" onAction="#delete" prefHeight="30.0" prefWidth="193.0" text="Hapus Barang" />
+      <Button fx:id="clearSelectButton" disable="true" layoutX="494.0" layoutY="425.0" mnemonicParsing="false" onAction="#clearSelection" prefHeight="30.0" prefWidth="119.0" text="Hapus Pilihan" />
+      <Button layoutX="561.0" layoutY="14.0" mnemonicParsing="false" onAction="#gotoMenu" text="Menu" />
+   </children>
+</AnchorPane>
